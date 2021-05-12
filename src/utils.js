@@ -415,6 +415,7 @@ const utils = {
   deepFillIn (dest, source) {
     if (source) {
       utils.forOwn(source, function (value, key) {
+        if (isPrototypePolluted(key)) continue
         const existing = dest[key]
         if (isPlainObject(value) && isPlainObject(existing)) {
           utils.deepFillIn(existing, value)
